@@ -143,7 +143,7 @@ def send_to_google_sheets(user_data):
 
 @app.route("/")
 def home():
-    return send_from_directory('static', 'web.html')
+    return send_from_directory('.', 'web.html')
 
 @app.route("/faq", methods=["POST"])
 def faq():
@@ -202,4 +202,4 @@ def save_user():
         return jsonify({"status": "error"}), 500
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=7860)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
